@@ -1,0 +1,137 @@
+{
+    "genre": [
+        {"en": "Cyberpunk 2077 style", "zh": "賽博龐克 2077"},
+        {"en": "Steampunk aesthetic", "zh": "蒸氣龐克"},
+        {"en": "Studio Ghibli anime style", "zh": "吉卜力動漫風"},
+        {"en": "Makoto Shinkai style", "zh": "新海誠光影風"},
+        {"en": "80s Synthwave vaporwave", "zh": "80年代合成波/蒸汽波"},
+        {"en": "Hyper-realistic photography", "zh": "超寫實攝影"},
+        {"en": "National Geographic photo", "zh": "國家地理雜誌風格"},
+        {"en": "Unreal Engine 5 render", "zh": "UE5 3D渲染"},
+        {"en": "Oil painting by Van Gogh", "zh": "梵谷印象派油畫"},
+        {"en": "Ukiyo-e traditional art", "zh": "日本浮世繪"},
+        {"en": "Noir film style", "zh": "黑色電影風格"},
+        {"en": "Pixar 3D animation", "zh": "皮克斯 3D 動畫"},
+        {"en": "Concept art sketches", "zh": "概念藝術草圖"}
+    ],
+    "vibe": [
+        {"en": "Dystopian and gritty", "zh": "反烏托邦/粗糙感"},
+        {"en": "Ethereal and dreamy", "zh": "空靈夢幻"},
+        {"en": "Dark and ominous", "zh": "黑暗不祥"},
+        {"en": "Vibrant and energetic", "zh": "充滿活力色彩"},
+        {"en": "Peaceful and serene", "zh": "寧靜祥和"},
+        {"en": "Mysterious and foggy", "zh": "神秘迷霧"},
+        {"en": "Romantic and soft", "zh": "浪漫柔和"},
+        {"en": "Chaos and destruction", "zh": "混亂毀滅"}
+    ],
+    "quality": [
+        {"en": "8k resolution, highly detailed", "zh": "8K 解析度/極致細節"},
+        {"en": "Masterpiece, award winning", "zh": "傑作/獲獎作品"},
+        {"en": "Photorealistic, raw photo", "zh": "照片級真實/Raw檔"},
+        {"en": "HDR, sharp focus", "zh": "HDR 高動態範圍/對焦清晰"}
+    ],
+    "lighting": [
+        {"en": "Cinematic lighting", "zh": "電影級打光"},
+        {"en": "Volumetric Tyndall effect", "zh": "體積光/丁達爾效應"},
+        {"en": "Golden hour sunlight", "zh": "黃昏金黃時刻"},
+        {"en": "Blue hour cold tones", "zh": "藍調時刻/冷色調"},
+        {"en": "Rim lighting", "zh": "邊緣光/輪廓光"},
+        {"en": "Butterfly lighting", "zh": "蝴蝶光 (人像美膚)"},
+        {"en": "Rembrandt lighting", "zh": "林布蘭光 (三角光)"},
+        {"en": "Neon flickering lights", "zh": "霓虹閃爍光"},
+        {"en": "Bioluminescent glow", "zh": "生物發光 (螢光)"},
+        {"en": "Softbox studio lighting", "zh": "攝影棚柔光箱"}
+    ],
+    "angle": [
+        {"en": "Eye-level shot", "zh": "水平視角"},
+        {"en": "Low angle hero shot", "zh": "低角度仰拍 (英雄感)"},
+        {"en": "High angle bird's eye view", "zh": "高角度鳥瞰"},
+        {"en": "Dutch angle", "zh": "荷蘭式傾斜 (不安感)"},
+        {"en": "Over-the-shoulder shot", "zh": "過肩鏡頭"},
+        {"en": "Selfie angle", "zh": "自拍視角"},
+        {"en": "Macro close-up", "zh": "微距特寫"}
+    ],
+    "lens": [
+        {"en": "35mm cinematic lens", "zh": "35mm 電影鏡頭 (人文)"},
+        {"en": "85mm f/1.8 portrait lens", "zh": "85mm 人像大光圈"},
+        {"en": "200mm telephoto lens", "zh": "200mm 長焦鏡頭 (壓縮感)"},
+        {"en": "Fisheye lens", "zh": "魚眼鏡頭"},
+        {"en": "Wide-angle lens", "zh": "廣角鏡頭"},
+        {"en": "Bokeh background", "zh": "背景虛化 (散景)"}
+    ],
+    "location": [
+        {"en": "Neon cyberpunk street", "zh": "賽博龐克霓虹街道"},
+        {"en": "Abandoned spaceship corridor", "zh": "廢棄太空船走廊"},
+        {"en": "Magical ancient forest", "zh": "魔法古老森林"},
+        {"en": "Futuristic utopian city", "zh": "未來烏托邦城市"},
+        {"en": "Cozy coffee shop interior", "zh": "溫馨咖啡廳內部"},
+        {"en": "Post-apocalyptic ruins", "zh": "末日廢墟"},
+        {"en": "Underwater coral reef", "zh": "水下珊瑚礁"},
+        {"en": "Snowy mountain peak", "zh": "雪山山頂"},
+        {"en": "Desert dunes at sunset", "zh": "日落沙漠沙丘"}
+    ],
+    "ethnicity": [
+        {"en": "East Asian", "zh": "東亞裔"}, {"en": "Japanese", "zh": "日本人"},
+        {"en": "Nordic Caucasian", "zh": "北歐白人"}, {"en": "African", "zh": "非洲裔"},
+        {"en": "Latina", "zh": "拉丁裔"}, {"en": "Elf", "zh": "精靈族"},
+        {"en": "Cyborg", "zh": "生化人"}, {"en": "Robot", "zh": "機器人"},
+        {"en": "Orc", "zh": "半獸人"}, {"en": "Angel", "zh": "天使"}
+    ],
+    "gender": [
+        {"en": "woman", "zh": "女性"}, {"en": "man", "zh": "男性"},
+        {"en": "girl", "zh": "女孩"}, {"en": "boy", "zh": "男孩"},
+        {"en": "non-binary", "zh": "非二元性別"}, {"en": "android", "zh": "人造人"}
+    ],
+    "hair": [
+        {"en": "long flowing blonde hair", "zh": "飄逸金色長髮"},
+        {"en": "short black bob cut", "zh": "黑色短鮑伯頭"},
+        {"en": "messy brown bun", "zh": "凌亂棕色丸子頭"},
+        {"en": "twin tails with ribbons", "zh": "綁著緞帶的雙馬尾"},
+        {"en": "white silver ponytail", "zh": "銀白馬尾"},
+        {"en": "rainbow colored hair", "zh": "彩虹色頭髮"},
+        {"en": "bald", "zh": "光頭"},
+        {"en": "mohawk hairstyle", "zh": "莫霍克頭 (雞冠頭)"},
+        {"en": "curly red hair", "zh": "紅色捲髮"}
+    ],
+    "figure": [
+        {"en": "slim and elegant", "zh": "苗條優雅"},
+        {"en": "muscular and ripped", "zh": "肌肉發達/線條分明"},
+        {"en": "curvy hourglass figure", "zh": "豐滿沙漏型"},
+        {"en": "petite and cute", "zh": "嬌小可愛"},
+        {"en": "tall and lanky", "zh": "瘦高"},
+        {"en": "chubby and soft", "zh": "圓潤柔軟"},
+        {"en": "plus size model", "zh": "大尺碼模特兒"},
+        {"en": "athletic build", "zh": "運動員體格"}
+    ],
+    "pose": [
+        {"en": "standing confidently", "zh": "自信站立"},
+        {"en": "sitting on a throne", "zh": "坐在寶座上"},
+        {"en": "dynamic action pose", "zh": "動態戰鬥姿勢"},
+        {"en": "looking back over shoulder", "zh": "回眸看鏡頭"},
+        {"en": "floating in mid-air", "zh": "漂浮在空中"},
+        {"en": "kneeling down", "zh": "單膝跪地"},
+        {"en": "running towards camera", "zh": "跑向鏡頭"},
+        {"en": "lying on the grass", "zh": "躺在草地上"}
+    ],
+    "outfit": [
+        {"en": "futuristic techwear suit", "zh": "未來機能風套裝"},
+        {"en": "cyberpunk leather jacket", "zh": "賽博皮革外套"},
+        {"en": "victorian gothic dress", "zh": "維多利亞哥德長裙"},
+        {"en": "tactical military armor", "zh": "戰術軍事裝甲"},
+        {"en": "casual hoodie and jeans", "zh": "休閒帽T牛仔褲"},
+        {"en": "traditional japanese kimono", "zh": "傳統日本和服"},
+        {"en": "elegant evening gown", "zh": "優雅晚禮服"},
+        {"en": "wizard robe", "zh": "巫師長袍"},
+        {"en": "office business suit", "zh": "商務西裝"}
+    ],
+    "expression": [
+        {"en": "expressionless", "zh": "無表情/冷酷"},
+        {"en": "smiling warmly", "zh": "溫暖微笑"},
+        {"en": "smirking mysteriously", "zh": "神秘壞笑"},
+        {"en": "crying with tears", "zh": "哭泣流淚"},
+        {"en": "angry and shouting", "zh": "憤怒吼叫"},
+        {"en": "surprised wide eyes", "zh": "驚訝睜大眼"},
+        {"en": "closed eyes sleeping", "zh": "閉眼睡覺"},
+        {"en": "seductive look", "zh": "誘惑神情"}
+    ]
+}
