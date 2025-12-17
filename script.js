@@ -1,78 +1,35 @@
-﻿// --- 1. 專業詞庫 ---
-const DICTIONARY = {
-    "genre": [
-        {en: "Cyberpunk 2077 style", zh: "賽博龐克 2077"}, {en: "Studio Ghibli anime style", zh: "吉卜力動漫風"},
-        {en: "Makoto Shinkai style", zh: "新海誠光影風"}, {en: "Hyper-realistic photography", zh: "超寫實攝影"},
-        {en: "Unreal Engine 5 render", zh: "UE5 3D渲染"}, {en: "Oil painting by Van Gogh", zh: "梵谷油畫"}
-    ],
-    "vibe": [
-        {en: "Dystopian and gritty", zh: "反烏托邦"}, {en: "Ethereal and dreamy", zh: "空靈夢幻"},
-        {en: "Dark and ominous", zh: "黑暗不祥"}, {en: "Vibrant and energetic", zh: "充滿活力"}
-    ],
-    "quality": [
-        {en: "8k resolution, highly detailed", zh: "8K 極致細節"}, {en: "Masterpiece, award winning", zh: "傑作"},
-        {en: "Photorealistic, raw photo", zh: "照片級真實"}
-    ],
-    "location": [
-        {en: "Neon cyberpunk street", zh: "霓虹街道"}, {en: "Magical ancient forest", zh: "魔法森林"},
-        {en: "Post-apocalyptic ruins", zh: "末日廢墟"}, {en: "Snowy mountain peak", zh: "雪山頂"}
-    ],
-    "lighting": [
-        {en: "Cinematic lighting", zh: "電影級打光"}, {en: "Golden hour sunlight", zh: "黃昏金光"},
-        {en: "Volumetric Tyndall effect", zh: "耶穌光"}, {en: "Neon flickering lights", zh: "霓虹光"}
-    ],
-    "angle": [
-        {en: "Eye-level shot", zh: "水平視角"}, {en: "Low angle hero shot", zh: "仰拍"},
-        {en: "High angle bird's eye view", zh: "鳥瞰"}
-    ],
-    "lens": [
-        {en: "35mm cinematic lens", zh: "35mm 電影鏡頭"}, {en: "85mm f/1.8 portrait lens", zh: "85mm 人像鏡"},
-        {en: "Bokeh background", zh: "背景虛化"}
-    ],
-    // 角色屬性 (更新後)
-    "ethnicity": [
-        {en: "East Asian", zh: "東亞裔"}, {en: "Nordic Caucasian", zh: "北歐白人"},
-        {en: "Latina", zh: "拉丁裔"}, {en: "Elf", zh: "精靈族"}, {en: "Cyborg", zh: "生化人"}
-    ],
-    "gender": [
-        {en: "woman", zh: "女性"}, {en: "man", zh: "男性"}, {en: "girl", zh: "女孩"}, {en: "boy", zh: "男孩"}
-    ],
-    "hair": [
-        {en: "long silver hair", zh: "銀色長髮"}, {en: "short messy bob", zh: "凌亂短髮"},
-        {en: "neon pink ponytail", zh: "霓虹粉馬尾"}, {en: "braided golden hair", zh: "金色辮子"}
-    ],
-    "body": [
-        {en: "slim and elegant", zh: "苗條優雅"}, {en: "muscular build", zh: "肌肉發達"},
-        {en: "petite and small", zh: "嬌小"}, {en: "tall and athletic", zh: "高挑運動型"}
-    ],
-    "outfit": [
-        {en: "futuristic techwear suit", zh: "機能服"}, {en: "cyberpunk leather jacket", zh: "皮革外套"},
-        {en: "traditional japanese kimono", zh: "和服"}, {en: "elegant evening gown", zh: "晚禮服"}
-    ],
-    "pose": [
-        {en: "standing confidently", zh: "自信站立"}, {en: "dynamic action pose", zh: "戰鬥姿勢"},
-        {en: "sitting on a ledge", zh: "坐在邊緣"}, {en: "looking at viewer", zh: "看著觀眾"}
-    ],
-    "expression": [
-        {en: "expressionless", zh: "冷酷"}, {en: "smiling warmly", zh: "溫暖微笑"},
-        {en: "mysterious smirk", zh: "神秘壞笑"}, {en: "serious looking", zh: "嚴肅"}
-    ]
-};
+﻿// --- 1. 全域變數與繁體中文配置 ---
+let DICTIONARY = {}; 
 
 const LABELS = { 
-    "ethnicity": "種族", "gender": "性別", "hair": "頭髮", 
-    "body": "身材", "pose": "姿勢", "outfit": "服裝", "expression": "表情" 
+    "ethnicity": "種族", "gender": "性別", "hairStyle": "髮型", 
+    "hairColor": "髮色", "body": "身材", "pose": "姿勢", 
+    "outfit": "服裝", "expression": "表情" 
 };
 
-// 範例文字提示
 const HINTS = {
-    "ethnicity": "例如：Japanese, Elf", "gender": "例如：woman, man", 
-    "hair": "例如：Blue long hair", "body": "例如：Slim, Fit",
-    "pose": "例如：Running, Sitting", "outfit": "例如：Armor, Dress",
-    "expression": "例如：Happy, Sad"
+    "ethnicity": "例如：東亞裔、精靈", "gender": "例如：女性、女孩", 
+    "hairStyle": "例如：長髮、馬尾", "hairColor": "例如：銀色、霓虹粉",
+    "body": "例如：苗條、肌肉型", "pose": "例如：自信站立、奔跑", 
+    "outfit": "例如：機能服、和服", "expression": "例如：溫暖微笑、冷酷"
 };
 
-// --- 2. 初始化與工具 ---
+// --- 2. 載入詞庫 (支援 Fetch) ---
+async function loadLibrary() {
+    try {
+        const response = await fetch('data.json');
+        if (!response.ok) throw new Error('無法載入 data.json');
+        DICTIONARY = await response.json();
+        initDatalists();
+        renderForm();
+    } catch (error) {
+        console.error("載入失敗:", error);
+        alert("詞庫載入失敗！請確保使用 Live Server 開啟且檔案名為 data.json");
+        renderForm(); 
+    }
+}
+
+// --- 3. UI 渲染邏輯 ---
 function initDatalists() {
     ["genre", "vibe", "quality", "location", "lighting", "angle", "lens"].forEach(key => {
         createDatalist(`list-${key}`, DICTIONARY[key]);
@@ -81,7 +38,7 @@ function initDatalists() {
 
 function createDatalist(id, items) {
     const dl = document.getElementById(id);
-    if(!dl) return;
+    if(!dl || !items) return;
     dl.innerHTML = items.map(item => `<option value="${item.en}">${item.zh}</option>`).join('');
 }
 
@@ -89,7 +46,9 @@ function renderForm() {
     const container = document.getElementById('subjectsContainer');
     const num = document.getElementById('numSubjects').value;
     container.innerHTML = '';
-    const attrs = ["ethnicity", "gender", "hair", "body", "outfit", "pose", "expression"];
+    
+    // 拆分頭髮為 hairStyle 與 hairColor
+    const attrs = ["ethnicity", "gender", "hairStyle", "hairColor", "body", "outfit", "pose", "expression"];
     
     for(let i=0; i<num; i++) {
         const fieldset = document.createElement('fieldset');
@@ -107,19 +66,21 @@ function renderForm() {
                     <span class="hint">${HINTS[attr]}</span>
                 </div>
             `;
-            setTimeout(() => createDatalist(listId, DICTIONARY[attr]), 0);
+            if (DICTIONARY[attr]) {
+                setTimeout(() => createDatalist(listId, DICTIONARY[attr]), 0);
+            }
         });
         container.appendChild(fieldset);
     }
 }
 
-// --- 3. 核心邏輯 ---
+// --- 4. 核心功能：隨機與生成 ---
 function roll(targetId) {
     let key = targetId.includes('subject') ? targetId.split('-').pop() : targetId;
     const el = document.getElementById(targetId);
     if (DICTIONARY[key] && el) {
-        const randomItem = DICTIONARY[key][Math.floor(Math.random() * DICTIONARY[key].length)];
-        el.value = randomItem.en;
+        const item = DICTIONARY[key][Math.floor(Math.random() * DICTIONARY[key].length)];
+        el.value = item.en;
     }
 }
 
@@ -130,8 +91,8 @@ document.getElementById('randomizeBtn').onclick = () => {
 };
 
 function findChinese(key, enValue) {
-    if(!enValue) return "";
-    const found = DICTIONARY[key]?.find(item => item.en.toLowerCase() === enValue.toLowerCase());
+    if(!enValue || !DICTIONARY[key]) return enValue;
+    const found = DICTIONARY[key].find(item => item.en.toLowerCase() === enValue.toLowerCase());
     return found ? found.zh : enValue;
 }
 
@@ -141,17 +102,19 @@ function generatePrompt(e) {
     let enParts = [];
     let zhParts = [];
 
-    // 處理角色
+    if(data.title) zhParts.push(`【標題】${data.title}`);
+
+    // 處理角色屬性
     const num = document.getElementById('numSubjects').value;
     for(let i=0; i<num; i++) {
         let sEn = []; let sZh = []; let sObj = {};
-        ["ethnicity", "gender", "hair", "body", "outfit", "pose", "expression"].forEach(attr => {
+        ["ethnicity", "gender", "hairColor", "hairStyle", "body", "outfit", "pose", "expression"].forEach(attr => {
             const val = document.getElementById(`subject-${i}-${attr}`).value;
             if(val) {
-                sEn.push(val);
                 const zhVal = findChinese(attr, val);
+                sEn.push(val);
                 sZh.push(zhVal);
-                sObj[attr] = { en: val, zh: zhVal };
+                sObj[attr] = { en: val, zh: zhVal }; // 補回雙語 JSON 格式
             }
         });
         if(sEn.length > 0) {
@@ -161,37 +124,39 @@ function generatePrompt(e) {
         }
     }
 
-    // 環境風格
+    // 處理場景屬性
     ["location", "lighting", "genre", "vibe", "angle", "lens", "quality"].forEach(key => {
         const val = document.getElementById(key).value;
         if(val) {
+            const zhVal = findChinese(key, val);
             enParts.push(val);
-            zhParts.push(`【${key}】${findChinese(key, val)}`);
-            data.raw_json[key] = { en: val, zh: findChinese(key, val) };
+            zhParts.push(`【${key}】${zhVal}`);
+            data.raw_json[key] = { en: val, zh: zhVal };
         }
     });
 
     data.prompt = enParts.join(", ");
-    document.getElementById('out-en').textContent = data.prompt || "請輸入內容或點擊隨機";
+    document.getElementById('out-en').textContent = data.prompt || "請輸入內容或點擊隨機生成";
     document.getElementById('out-zh').textContent = zhParts.join("\n");
     document.getElementById('out-json').textContent = JSON.stringify(data.raw_json, null, 2);
+    
     saveHistory(data.prompt, zhParts.join(" | "));
 }
 
-// --- 4. 輔助功能 ---
+// --- 5. 歷史紀錄 (補回 V5 鍵名) ---
 function saveHistory(en, zh) {
     if(!en) return;
-    let history = JSON.parse(localStorage.getItem('v6_history') || '[]');
+    let history = JSON.parse(localStorage.getItem('v5_history') || '[]');
     if(history[0]?.en === en) return;
     history.unshift({ time: new Date().toLocaleTimeString(), en: en, zh: zh });
     if(history.length > 10) history.pop();
-    localStorage.setItem('v6_history', JSON.stringify(history));
+    localStorage.setItem('v5_history', JSON.stringify(history));
     renderHistory();
 }
 
 function renderHistory() {
     const list = document.getElementById('historyList');
-    const history = JSON.parse(localStorage.getItem('v6_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('v5_history') || '[]');
     list.innerHTML = history.map((item, index) => `
         <div class="history-item">
             <div class="history-meta"><span>🕒 ${item.time}</span><button class="copy-btn" onclick="copyTextH('${index}')">複製</button></div>
@@ -201,9 +166,9 @@ function renderHistory() {
     `).join('');
 }
 
-function clearHistory() { localStorage.removeItem('v6_history'); renderHistory(); }
-function copyTextH(i) { navigator.clipboard.writeText(document.getElementById(`h-${i}`).value).then(() => alert("已複製")); }
-function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => alert("已複製")); }
+function clearHistory() { localStorage.removeItem('v5_history'); renderHistory(); }
+function copyTextH(i) { navigator.clipboard.writeText(document.getElementById(`h-${i}`).value).then(() => alert("已複製歷史紀錄")); }
+function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => alert("內容已複製")); }
 
 document.getElementById('promptForm').addEventListener('submit', generatePrompt);
-document.addEventListener('DOMContentLoaded', () => { initDatalists(); renderForm(); renderHistory(); });
+document.addEventListener('DOMContentLoaded', () => { loadLibrary(); renderHistory(); });
