@@ -1,129 +1,66 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Prompt Generator V6 Pro - 繁體中文版</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>AI Prompt Generator V10</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>🤖 AI 繪圖提示詞生成器 <span class="badge">V6.0 Pro</span></h1>
-            <p>頭髮與身材拆分 | 雙語 JSON 輸出 | 歷史紀錄連動</p>
-        </header>
-        
-        <div class="top-controls">
-            <div class="control-group">
-                <label>👥 角色數量:</label>
-                <input type="number" id="numSubjects" value="1" min="0" max="5">
-                <button class="btn primary" onclick="renderForm()">更新配置</button>
-            </div>
-            <button class="btn success" id="randomizeBtn">✨ 全域隨機靈感 (Randomize All)</button>
-        </div>
+<div class="container">
 
-        <div class="main-layout">
-            <form id="promptForm">
-                <fieldset>
-                    <legend>🎨 畫風與氛圍 (Global Style)</legend>
-                    <div class="field-grid">
-                        <div class="input-unit full-width">
-                            <label>作品標題 (Title):</label>
-                            <input type="text" id="title" placeholder="例如：一位站在霓虹街道的少女">
-                            <span class="hint">範例：Cyberpunk girl, Ancient ruins</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>藝術風格 (Genre):</label>
-                            <input type="text" id="genre" list="list-genre" placeholder="選擇或輸入...">
-                            <datalist id="list-genre"></datalist>
-                            <span class="hint">範例：Pixar style, Studio Ghibli</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>視覺氛圍 (Vibe):</label>
-                            <input type="text" id="vibe" list="list-vibe" placeholder="選擇或輸入...">
-                            <datalist id="list-vibe"></datalist>
-                            <span class="hint">範例：Ethereal, Dystopian</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>畫質/渲染 (Quality):</label>
-                            <input type="text" id="quality" list="list-quality" placeholder="選擇或輸入...">
-                            <datalist id="list-quality"></datalist>
-                            <span class="hint">範例：Masterpiece, 8k resolution</span>
-                        </div>
-                    </div>
-                </fieldset>
-                
-                <div id="subjectsContainer"></div>
+<header>
+  <h1>🤖 AI Prompt Generator <span class="version">V10</span></h1>
+  <p class="subtitle">選單圖例 × 自由輸入 × 結構穩定</p>
+</header>
 
-                <fieldset>
-                    <legend>🌍 環境與攝影 (Environment & Camera)</legend>
-                    <div class="field-grid">
-                        <div class="input-unit">
-                            <label>地點 (Location):</label>
-                            <input type="text" id="location" list="list-location" placeholder="選擇或輸入...">
-                            <datalist id="list-location"></datalist>
-                            <span class="hint">例如：霓虹街道、魔法森林</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>光線 (Lighting):</label>
-                            <input type="text" id="lighting" list="list-lighting" placeholder="選擇或輸入...">
-                            <datalist id="list-lighting"></datalist>
-                            <span class="hint">例如：電影光、黃昏金光</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>鏡頭角度 (Angle):</label>
-                            <input type="text" id="angle" list="list-angle" placeholder="選擇或輸入...">
-                            <datalist id="list-angle"></datalist>
-                            <span class="hint">例如：仰拍、水平視角</span>
-                        </div>
-                        <div class="input-unit">
-                            <label>鏡頭規格 (Lens):</label>
-                            <input type="text" id="lens" list="list-lens" placeholder="選擇或輸入...">
-                            <datalist id="list-lens"></datalist>
-                            <span class="hint">例如：35mm 鏡頭、背景虛化</span>
-                        </div>
-                    </div>
-                </fieldset>
-                
-                <button type="submit" class="submit-btn">🚀 生成 Prompt (Generate)</button>
-            </form>
+<!-- ===== 核心風格 ===== -->
+<fieldset>
+  <legend>🎨 風格（Style）</legend>
 
-            <div class="sidebar">
-                <div class="output-card">
-                    <div class="card-header">
-                        <span class="tag en">English Prompt (AI用)</span>
-                        <button class="copy-btn" onclick="copyText('out-en')">📋 複製</button>
-                    </div>
-                    <div id="out-en" class="code-box">等待生成...</div>
-                </div>
+  <!-- V10 新增：圖例區 -->
+  <div class="example-grid" id="genre-examples"></div>
 
-                <div class="output-card">
-                    <div class="card-header">
-                        <span class="tag zh">中文結構參考</span>
-                        <button class="copy-btn" onclick="copyText('out-zh')">📋 複製</button>
-                    </div>
-                    <div id="out-zh" class="code-box secondary">等待生成...</div>
-                </div>
+  <!-- 原有自由輸入（保留） -->
+  <input type="text" id="genre" list="list-genre" placeholder="例如：超寫實攝影">
+  <datalist id="list-genre"></datalist>
+</fieldset>
 
-                <div class="output-card">
-                    <div class="card-header">
-                        <span class="tag json">JSON Data</span>
-                        <button class="copy-btn" onclick="copyText('out-json')">📋 複製</button>
-                    </div>
-                    <div id="out-json" class="code-box json-box">{}</div>
-                </div>
+<!-- ===== 攝影構圖 ===== -->
+<fieldset>
+  <legend>📐 構圖（Angle / Framing）</legend>
 
-                <div class="history-section">
-                    <div class="card-header">
-                        <h3>📜 歷史紀錄</h3>
-                        <button class="clear-btn" onclick="clearHistory()">🗑️ 清空</button>
-                    </div>
-                    <div id="historyList"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="example-grid" id="angle-examples"></div>
 
-    <script src="script.js"></script>
+  <input type="text" id="angle" list="list-angle" placeholder="例如：全身構圖">
+  <datalist id="list-angle"></datalist>
+</fieldset>
+
+<!-- ===== 場景 ===== -->
+<fieldset>
+  <legend>🌍 場景（Location）</legend>
+
+  <div class="example-grid" id="location-examples"></div>
+
+  <input type="text" id="location" list="list-location" placeholder="例如：溫馨臥室">
+  <datalist id="list-location"></datalist>
+</fieldset>
+
+<!-- ===== 自由補充 ===== -->
+<fieldset>
+  <legend>✍️ 自由補充（中文 / 英文）</legend>
+  <textarea id="freeText" placeholder="例如：一位坐在窗邊的女性，柔和光線..."></textarea>
+</fieldset>
+
+<!-- ===== 輸出 ===== -->
+<section class="output">
+  <button onclick="generatePrompt()">產生 Prompt</button>
+  <pre id="output"></pre>
+</section>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
